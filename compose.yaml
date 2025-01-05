@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: ./backend
+    container_name: app
+    ports:
+      - "9999:8080"
+    depends_on:
+      - db
+    environment:
+      - API_KEY=Df81ea076c5f02774c31af3999234a13
+      - DATABASE_PASSWORD=pRr19.
+      - DATABASE_URL=jdbc:postgresql://db:5432/solarwatch
+      - DATABASE_USERNAME=postgres
+      - JWT_SECRET=======================CodeCool=Spring===========================
+
+
+
+  db:
+    image: 'postgres:13.1-alpine'
+    #ports:
+    #  - '5432' #psql port, de a db-hez nem kell port, mert nem akarjuk kívülről elérni
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pRr19.
+      - POSTGRES_DB=solarwatch
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

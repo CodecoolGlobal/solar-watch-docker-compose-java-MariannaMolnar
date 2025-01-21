@@ -22,24 +22,27 @@ function Login() {
                 body: JSON.stringify(body),
             });
 
-            if (!response.ok) {
-                setError('Something went wrong');
-            }
-
             const data = await response.json();
             console.log(data);
-            setSuccess(data.message)
-            localStorage.setItem('jwt', data.jwt);
-            localStorage.setItem('userName', data.userName);
-            localStorage.setItem('roles', data.roles);
-            console.log(localStorage)
+            if (!response.ok) {
+                setError(data.message);
+            } else {
+                if (error) setError('');
 
-            
-            setTimeout(() => {
-                window.location.href = '/';
-            }, 1000);
+                setSuccess(data.message)
+                localStorage.setItem('jwt', data.jwt);
+                localStorage.setItem('userName', data.userName);
+                localStorage.setItem('roles', data.roles);
+                console.log(localStorage)
+    
+                
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000);
+    
+                console.log('Login successful', data);
+            }
 
-            console.log('Login successful', data);
         } catch (err) {
             setError(`Authentication failed. ${err}`);
 

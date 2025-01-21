@@ -45,20 +45,6 @@ public class UserService {
             copiedRoles
     );
     userRepository.save(updatedUser);
-//    userRepository.updateUser(new UserEntity(user.getUsername(), user.getPassword(), Set.copyOf(copiedRoles)));
   }
 
-
-  public void createUser(UserRequest signUpRequest) {
-    if (userRepository.findByUsername(signUpRequest.getUsername()).isPresent()) {
-      throw new IllegalArgumentException(format("user %s already exists", signUpRequest.getUsername()));
-    }
-
-    UserEntity user = new UserEntity(
-            signUpRequest.getUsername(),
-            encoder.encode(signUpRequest.getPassword()),
-            Set.of(Role.ROLE_USER)
-    );
-    userRepository.save(user);
-  }
 }

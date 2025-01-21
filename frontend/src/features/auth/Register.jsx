@@ -23,18 +23,21 @@ function Register() {
                 body: JSON.stringify(body),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                setError('Something went wrong');
+                setError(data.message);
+            } else {
+                if (error) setError('');
+                setSuccess(data.message)
+    
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1000);
+    
+                console.log('Registration successful', data);
             }
 
-            const data = await response.json();
-            setSuccess(data.message)
-
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 1000);
-
-            console.log('Login successful', data);
         } catch (err) {
             setError(`Authentication failed. ${err}`);
 

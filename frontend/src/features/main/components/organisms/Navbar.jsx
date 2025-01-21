@@ -81,7 +81,7 @@ function Navbar() {
                             </button>
                         ) : (
                             <Link to="/login" className="inline-block font-semibold py-2 px-4 rounded-lg shadow-md transition-transform bg-pink-300 hover:bg-buttonHover text-white">
-                                Sign In
+                                Log In
                             </Link>
                         )}
                     </BiggerOnHover>

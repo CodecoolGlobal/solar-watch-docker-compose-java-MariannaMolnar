@@ -9,6 +9,9 @@ export default {
       backgroundImage: {
         'background-1': "url('/src/assets/background1.png')",
         'background-2':"url('/src/assets/background2.png')",
+      },
+      colors: {
+        customBlue: 'rgb(122 182 251)',
       }
     },
   },

@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/sunrise-sunset")
@@ -30,6 +31,12 @@ public class SunriseSunsetReportController {
   public SunriseSunsetReportDTO getSunriseSunsetByDate(@RequestParam String city, @RequestParam String country,
                                                        @RequestParam String date) {
     return sunriseSunsetService.getSunriseSunsetReportForDate(city, country.toUpperCase(), LocalDate.parse(date));
+  }
+
+  @GetMapping("/range")
+  public List<SunriseSunsetReportDTO> getSunriseSunsetForDateRange(@RequestParam String city, @RequestParam String country,
+                                                                   @RequestParam String date, @RequestParam String endDate) {
+    return sunriseSunsetService.getSunriseSunsetReportForDateRange(city, country.toUpperCase(), LocalDate.parse(date), LocalDate.parse(endDate));
   }
 
   @PostMapping("/create")

@@ -13,7 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.String.format;
 
@@ -46,6 +50,22 @@ public class SunriseSunsetService {
     CityDTO city = cityService.getCity(cityName, countryCode);
     SunriseSunsetReportDTO sunriseSunsetReport = getSunriseSunsetReport(city.lat(), city.lon(), date, city);
     return sunriseSunsetReport;
+  }
+
+  public List<SunriseSunsetReportDTO> getSunriseSunsetReportForDateRange(String cityName, String countryCode, LocalDate startDate, LocalDate endDate) {
+    CityDTO city = cityService.getCity(cityName, countryCode);
+    List<LocalDate> dateArray = Stream.iterate(startDate, date -> date.plusDays(1))
+            .limit(startDate.until(endDate.plusDays(1)).getDays())
+            .toList();
+
+    List<SunriseSunsetReportDTO> reports = new ArrayList<>();
+
+    for (LocalDate date : dateArray) {
+      SunriseSunsetReportDTO sunriseSunsetReport = getSunriseSunsetReport(city.lat(), city.lon(), date, city);
+      reports.add(sunriseSunsetReport);
+    }
+
+    return reports;
   }
 
   private SunriseSunsetReportDTO getSunriseSunsetReport(double lat, double lon, LocalDate date, CityDTO city) {

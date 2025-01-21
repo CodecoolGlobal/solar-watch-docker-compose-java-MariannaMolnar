@@ -3,10 +3,11 @@ import { useState } from "react";
 import Loading from "../main/components/atoms/Loading";
 
 function SolarWatch() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    //const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [city, setCity] = useState('');
     const [country, setCountry] = useState('');
     const [date, setDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [solarInfo, setSolarInfo] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -17,28 +18,27 @@ function SolarWatch() {
         const token = localStorage.getItem("jwt");
 
         let response;
+        let url = `/api/sunrise-sunset`;
 
         try {
 
             if (date !== '') {
-                console.log(localStorage.getItem("jwt"))
-                response = await fetch(`/api/sunrise-sunset?city=${city}&country=${country}&date=${date}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+                if (endDate !== '') {
+                    url += `/range?city=${city}&country=${country}&date=${date}&endDate=${endDate}`;
+                } else {
+                    url += `?city=${city}&country=${country}&date=${date}`;
+                }
             } else {
-
-                response = await fetch(`/api/sunrise-sunset/current?city=${city}&country=${country}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+                url += `/current?city=${city}&country=${country}`;
             }
+
+            response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
 
             if (!response.ok) {
                 console.error('Error: ', response.status, await response.text());
@@ -64,19 +64,22 @@ function SolarWatch() {
                 setCountry={setCountry}
                 date={date}
                 setDate={setDate}
+                endDate={endDate}
+                setEndDate={setEndDate}
                 handleDataRequest={handleDataRequest}
             />
             {loading ? (
-                        <Loading />
-                    ) : (
-                        solarInfo && (
-                            <div>
-                                <h3>Solar information for {solarInfo.cityName} on {solarInfo.date}</h3>
-                                <h4>Sunrise: {solarInfo.sunrise}</h4>
-                                <h4>Sunset: {solarInfo.sunset}</h4>
-                            </div>
-                        )
-                    )}
+                <Loading />
+            ) : (
+                solarInfo && (
+                    <div>
+                        <h3>Solar information for {solarInfo.cityName}</h3>
+                        <h4>Date: {solarInfo.date}</h4>
+                        <h4>Sunrise: {solarInfo.sunrise}</h4>
+                        <h4>Sunset: {solarInfo.sunset}</h4>
+                    </div>
+                )
+            )}
         </div>
     )
 }

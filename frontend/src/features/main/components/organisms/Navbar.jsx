@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import BiggerOnHover from "../atoms/BiggerOnHover";
-import SolarWatchLogo from "../atoms/SolarWatchLogo";
 import { useEffect, useState } from "react";
-import Button from "../atoms/Button";
+import Logo from "../atoms/Logo"
+import solarLogo from "../../../../assets/sun-logo2.png"
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,7 +54,7 @@ function Navbar() {
                                 ))}
                             </h1>
 
-                            <SolarWatchLogo />
+                            <Logo h={20} logoSrc={solarLogo} />
                         </a>
                     </BiggerOnHover>
                 </div>

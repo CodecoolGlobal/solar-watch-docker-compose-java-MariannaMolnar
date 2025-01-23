@@ -1,10 +1,12 @@
 services:
   app:
+    image: solar-watch-docker-compose-java-mariannamolnar-app:latest
     build:
       context: ./backend
+      dockerfile: Dockerfile
     container_name: app
     ports:
-      - "9999:8080"
+      - "8080:8080"
     depends_on:
       - db
     environment:
@@ -27,6 +29,17 @@ services:
       - POSTGRES_DB=solarwatch
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  frontend:
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+
 
 volumes:
   postgres_data:

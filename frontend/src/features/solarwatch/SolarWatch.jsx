@@ -1,6 +1,7 @@
 import SolarDataForm from "../main/components/organisms/SolarDataForm";
 import { useState } from "react";
 import Loading from "../main/components/atoms/Loading";
+import ReportCard from "../main/components/molecules/ReportCard";
 
 function SolarWatch() {
     //const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -55,8 +56,30 @@ function SolarWatch() {
             setLoading(false);
         }
     }
+
+    function renderReportCards() {
+        if (!endDate) {
+            return <ReportCard
+                date={solarInfo.date}
+                sunrise={solarInfo.sunrise}
+                sunset={solarInfo.sunset}
+            />
+        } else {
+            return solarInfo.map((report) => (
+                <div key={report.id}>
+                    <ReportCard
+                        date={report.date}
+                        sunrise={report.sunrise}
+                        sunset={report.sunset}
+                    />
+                </div>
+            ))
+        }
+    }
+
+
     return (
-        <div>
+        <div className="w-full">
             <SolarDataForm
                 city={city}
                 setCity={setCity}
@@ -72,11 +95,13 @@ function SolarWatch() {
                 <Loading />
             ) : (
                 solarInfo && (
-                    <div>
-                        <h3>Solar information for {solarInfo.cityName}</h3>
-                        <h4>Date: {solarInfo.date}</h4>
-                        <h4>Sunrise: {solarInfo.sunrise}</h4>
-                        <h4>Sunset: {solarInfo.sunset}</h4>
+                    <div className="p-2 w-full">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                            Solar information for {solarInfo[0].cityName}, {country.toUpperCase()}
+                            </h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4 justify-stretch mt-10">
+                            {renderReportCards()}
+                        </div>
                     </div>
                 )
             )}

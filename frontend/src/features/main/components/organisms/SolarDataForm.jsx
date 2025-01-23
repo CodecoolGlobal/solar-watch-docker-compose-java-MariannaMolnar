@@ -5,13 +5,19 @@ import InputField from "../atoms/InputField";
 import Button from "../atoms/Button";
 
 function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endDate, setEndDate, handleDataRequest }) {
-    const [useRange, setUseRange] = useState(false);
+    const [useEndDate, setUseEndDate] = useState(false);
 
 
-    //const navigate = useNavigate();
+    function handleCheckBoxChange(event) {
+        const isChecked = event.target.checked;
+        setUseEndDate(isChecked);
+        console.log("checked: ", isChecked);
+        console.log("end date: ", endDate);
+        if (!isChecked) setEndDate("");
+    }
 
     return (
-        <div>
+        <div className="w-full">
             <h1 className="font-bold text-3xl mb-5"> Request Solar Information</h1>
             <form onSubmit={handleDataRequest} className="flex flex-col items-center">
                 <div>
@@ -36,13 +42,13 @@ function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endD
                             <input
                                 type="checkbox"
                                 id="useRange"
-                                checked={useRange}
-                                onChange={(e) => setUseRange(e.target.checked)}
+                                checked={useEndDate}
+                                onChange={(e) => handleCheckBoxChange(e)}
                                 className="h-4 w-4 accent-customBlue border-gray-300 rounded focus:ring-customBlue mt-1"
                             />
                             <label htmlFor="useRange" className="flex gap-2"> Use range </label>
                         </div>
-                        {useRange ? (
+                        {useEndDate ? (
                             <>
                                 <InputField
                                     label="From"

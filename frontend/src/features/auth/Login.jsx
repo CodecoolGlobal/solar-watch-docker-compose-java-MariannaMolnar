@@ -1,7 +1,8 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import Button from "../main/components/atoms/Button";
-import SolarWatchLogo from "../main/components/atoms/SolarWatchLogo";
+import Logo from "../main/components/atoms/Logo";
+import loginLogo from "../../assets/login3.2.png";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -54,7 +55,7 @@ function Login() {
         <div>
             <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <SolarWatchLogo h={20}/>
+                    <Logo h={20} logoSrc={loginLogo}/>
                     <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight">Log into
                         your
                         account</h2>

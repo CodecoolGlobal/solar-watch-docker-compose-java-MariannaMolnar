@@ -35,8 +35,6 @@ function Register() {
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 1000);
-    
-                console.log('Registration successful', data);
             }
 
         } catch (err) {

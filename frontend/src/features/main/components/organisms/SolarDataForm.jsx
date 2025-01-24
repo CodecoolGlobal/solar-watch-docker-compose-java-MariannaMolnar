@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import InputField from "../atoms/InputField";
 
 import Button from "../atoms/Button";
@@ -11,8 +11,6 @@ function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endD
     function handleCheckBoxChange(event) {
         const isChecked = event.target.checked;
         setUseEndDate(isChecked);
-        console.log("checked: ", isChecked);
-        console.log("end date: ", endDate);
         if (!isChecked) setEndDate("");
     }
 

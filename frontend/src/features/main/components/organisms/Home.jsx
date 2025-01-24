@@ -1,15 +1,12 @@
 import BiggerOnHover from "../atoms/BiggerOnHover";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    //const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(localStorage)
         const token = localStorage.getItem("jwt");
-        console.log(token)
         if (token) {
             setIsLoggedIn(true);
         } else {

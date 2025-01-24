@@ -4,7 +4,6 @@ import Loading from "../main/components/atoms/Loading";
 import ReportCard from "../main/components/molecules/ReportCard";
 
 function SolarWatch() {
-    //const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [city, setCity] = useState('');
     const [country, setCountry] = useState('');
     const [date, setDate] = useState('');

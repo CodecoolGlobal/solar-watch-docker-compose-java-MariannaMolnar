@@ -33,15 +33,11 @@ function Login() {
                 setSuccess(data.message)
                 localStorage.setItem('jwt', data.jwt);
                 localStorage.setItem('userName', data.userName);
-                localStorage.setItem('roles', data.roles);
-                console.log(localStorage)
-    
+                localStorage.setItem('roles', data.roles);    
                 
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 1000);
-    
-                console.log('Login successful', data);
             }
 
         } catch (err) {

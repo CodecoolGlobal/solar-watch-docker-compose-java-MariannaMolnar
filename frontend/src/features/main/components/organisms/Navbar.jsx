@@ -6,31 +6,18 @@ import solarLogo from "../../../../assets/sun-logo2.png"
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    //const [username, setUsername] = useState('');
-    //const username = localStorage.getItem("userName");
-
-    /*const checkLogin = () => {
-        if (isLoggedIn) {
-            setUsername(localStorage.getItem("userName"))
-            return true;
-        } else {
-            setUsername('');
-            return false;
-        }
-    };*/
+    
     const navigate = useNavigate();
 
     function handleLogout() {
         localStorage.clear();
         setIsLoggedIn(false)
-        //setUsername('');
         navigate("/");
     }
 
     useEffect(() => {
-        console.log(localStorage)
+
         const token = localStorage.getItem("jwt");
-        console.log(token)
         if (token) {
             setIsLoggedIn(true);
         } else {

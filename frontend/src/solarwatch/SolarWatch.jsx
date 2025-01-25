@@ -87,7 +87,7 @@ function SolarWatch() {
         <div className="w-full">
             <SolarDataForm
                 formState={formState}
-                setFormState={setFormState}
+                onFormChange={setFormState}
                 handleDataRequest={handleDataRequest}
                 capitalizeFirstChar={capitalizeFirstChar}
             />

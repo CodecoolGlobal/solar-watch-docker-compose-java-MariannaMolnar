@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import Button from "../main/components/atoms/Button";
 import Logo from "../main/components/atoms/Logo";
-import loginLogo from "../../assets/login3.2.png";
+import loginLogo from "../../../../pictures/login3.2.png";
 
 function Login() {
     const [username, setUsername] = useState('');

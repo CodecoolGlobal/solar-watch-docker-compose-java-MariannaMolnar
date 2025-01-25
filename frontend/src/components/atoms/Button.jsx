@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import BiggerOnHover from "./BiggerOnHover";
+import BiggerOnHover from "./BiggerOnHover.jsx";
 
  
 const Button = ({ children, onClick, className = "", bgColor = "bg-button", textColor = "text-white", ...props }) => (

@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import BiggerOnHover from "../atoms/BiggerOnHover";
+import BiggerOnHover from "../atoms/BiggerOnHover.jsx";
 import { useEffect, useState } from "react";
-import Logo from "../atoms/Logo"
-import solarLogo from "../../../../../../pictures/sun-logo2.png"
+import Logo from "../atoms/Logo.jsx"
+import solarLogo from "../../../../../pictures/sun-logo2.png"
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,7 +32,7 @@ function Navbar() {
                 <div className="flex shrink-0 items-center">
                     {/* Logo */}
                     <BiggerOnHover>
-                        <a href="/" className="flex items-center">
+                        <a href="/frontend/public" className="flex items-center">
                             <h1 className="text-center">
                                 {"SOLARWATCH".split("").map((char, index) => (
                                     <span key={index} className="block text-3m text-bold mx-1">

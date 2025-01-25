@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import InputField from "../atoms/InputField";
-import Button from "../atoms/Button";
+import InputField from "../atoms/InputField.jsx";
+import Button from "../atoms/Button.jsx";
 
 function SolarDataForm({ formState, setFormState, handleDataRequest, capitalizeFirstChar }) {
     const [useEndDate, setUseEndDate] = useState(false);

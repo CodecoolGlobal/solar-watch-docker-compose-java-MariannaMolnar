@@ -1,4 +1,4 @@
-import BiggerOnHover from "../atoms/BiggerOnHover";
+import BiggerOnHover from "../atoms/BiggerOnHover.jsx";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 

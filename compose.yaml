@@ -10,11 +10,11 @@ services:
     depends_on:
       - db
     environment:
-      - API_KEY=${API_KEY}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - DATABASE_URL=jdbc:postgresql://db:5432/solarwatch
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - JWT_SECRET=${JWT_SECRET}
+      - solarwatch.geocode.api.key=${API_KEY}
+      - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/solarwatch
+      - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
+      - codecool.app.jwtSecret=${JWT_SECRET}
       - codecool.app.jwtExpirationMs=${jwtExpirationMs}
 
 
@@ -25,8 +25,8 @@ services:
     #  - '5432' #psql port, de a db-hez nem kell port, mert nem akarjuk kívülről elérni
     container_name: db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=pRr19.
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=solarwatch
     volumes:
       - postgres_data:/var/lib/postgresql/data

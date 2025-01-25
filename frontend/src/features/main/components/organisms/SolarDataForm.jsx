@@ -4,15 +4,16 @@ import InputField from "../atoms/InputField";
 
 import Button from "../atoms/Button";
 
-function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endDate, setEndDate, handleDataRequest }) {
+function SolarDataForm({ formState, setFormState, handleDataRequest, capitalizeFirstChar }) {
     const [useEndDate, setUseEndDate] = useState(false);
 
 
     function handleCheckBoxChange(event) {
         const isChecked = event.target.checked;
         setUseEndDate(isChecked);
-        if (!isChecked) setEndDate("");
+        if (!isChecked) setFormState({...formState, endDate: ''});
     }
+
 
     return (
         <div className="w-full">
@@ -22,15 +23,15 @@ function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endD
                     <InputField
                         label="City"
                         type="text"
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
+                        value={formState.city}
+                        onChange={(e) => setFormState({...formState, city: capitalizeFirstChar(e.target.value)})}
                         required
                     />
                     <InputField
                         label="Country"
                         type="text"
-                        value={country}
-                        onChange={(e) => setCountry(e.target.value)}
+                        value={formState.country}
+                        onChange={(e) => setFormState({...formState, country: e.target.value})}
                         required
                     />
                     
@@ -51,14 +52,14 @@ function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endD
                                 <InputField
                                     label="From"
                                     type="date"
-                                    value={date}
-                                    onChange={(e) => setDate(e.target.value)}
+                                    value={formState.date}
+                                    onChange={(e) => setFormState({...formState, date: e.target.value})}
                                 />
                                 <InputField
                                     label="To"
                                     type="date"
-                                    value={endDate}
-                                    onChange={(e) => setEndDate(e.target.value)}
+                                    value={formState.endDate}
+                                    onChange={(e) => setFormState({...formState, endDate: e.target.value})}
                                 />
                             </>
 
@@ -66,8 +67,8 @@ function SolarDataForm({ city, setCity, country, setCountry, date, setDate, endD
                             <InputField
                                 label=" "
                                 type="date"
-                                value={date}
-                                onChange={(e) => setDate(e.target.value)}
+                                value={formState.date}
+                                onChange={(e) => setFormState({...formState, date: e.target.value})}
                             />
                         )}
 

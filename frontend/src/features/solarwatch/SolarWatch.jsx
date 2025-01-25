@@ -4,12 +4,14 @@ import Loading from "../main/components/atoms/Loading";
 import ReportCard from "../main/components/molecules/ReportCard";
 
 function SolarWatch() {
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [date, setDate] = useState('');
-    const [endDate, setEndDate] = useState('');
     const [solarInfo, setSolarInfo] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [formState, setFormState] = useState({
+        city: '',
+        country: '',
+        date: '',
+        endDate: ''
+    });
 
     async function handleDataRequest(e) {
         e.preventDefault();
@@ -22,14 +24,14 @@ function SolarWatch() {
 
         try {
 
-            if (date !== '') {
-                if (endDate !== '') {
-                    url += `/range?city=${city}&country=${country}&date=${date}&endDate=${endDate}`;
+            if (formState.date !== '') {
+                if (formState.endDate !== '') {
+                    url += `/range?city=${formState.city}&country=${formState.country}&date=${formState.date}&endDate=${formState.endDate}`;
                 } else {
-                    url += `?city=${city}&country=${country}&date=${date}`;
+                    url += `?city=${formState.city}&country=${formState.country}&date=${formState.date}`;
                 }
             } else {
-                url += `/current?city=${city}&country=${country}`;
+                url += `/current?city=${formState.city}&country=${formState.country}`;
             }
 
             response = await fetch(url, {
@@ -56,14 +58,12 @@ function SolarWatch() {
         }
     }
 
+    function capitalizeFirstChar(string) {
+        return string.charAt(0).toLocaleUpperCase() + string.substring(1);
+    }
+
     function renderReportCards() {
-        if (!endDate) {
-            return <ReportCard
-                date={solarInfo.date}
-                sunrise={solarInfo.sunrise}
-                sunset={solarInfo.sunset}
-            />
-        } else {
+        if (Array.isArray(solarInfo)) {
             return solarInfo.map((report) => (
                 <div key={report.id}>
                     <ReportCard
@@ -73,6 +73,12 @@ function SolarWatch() {
                     />
                 </div>
             ))
+        } else {
+            return <ReportCard
+                date={solarInfo.date}
+                sunrise={solarInfo.sunrise}
+                sunset={solarInfo.sunset}
+            />
         }
     }
 
@@ -80,15 +86,10 @@ function SolarWatch() {
     return (
         <div className="w-full">
             <SolarDataForm
-                city={city}
-                setCity={setCity}
-                country={country}
-                setCountry={setCountry}
-                date={date}
-                setDate={setDate}
-                endDate={endDate}
-                setEndDate={setEndDate}
+                formState={formState}
+                setFormState={setFormState}
                 handleDataRequest={handleDataRequest}
+                capitalizeFirstChar={capitalizeFirstChar}
             />
             {loading ? (
                 <Loading />
@@ -96,7 +97,7 @@ function SolarWatch() {
                 solarInfo && (
                     <div className="p-2 w-full">
                         <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                            Solar information for {solarInfo[0].cityName}, {country.toUpperCase()}
+                            Solar information for {capitalizeFirstChar(formState.city)}, {formState.country.toUpperCase()}
                             </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-4 justify-stretch mt-10">
                             {renderReportCards()}

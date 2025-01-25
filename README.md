@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a>
-    <img src="pictures/sun-logo2.png" alt="Logo" width="80" height="80">
+    <img src="pictures/sun-logo2.png" alt="Logo" width="100" height="100">
   </a>
 <h1 align="center">SolarWatch</h1>
 
@@ -120,12 +120,39 @@ Data request is restricted to registered users only, without logging in users ar
 - for given dates in a range
 
 This is the landing page for users without login:  
+  
 ![Website Landing Screenshot](pictures/solarwatch-landing1.png)
 
 This is the info page:  
+  
 ![Website Info Screenshot](pictures/solarwatch-solarinfo.png)
+  
 
 If you leave the date blank you can get the data for the current date, by checking the checkbox "Use range" you can add an end date and request the data for the given date range.
+
+
+### Stopping the Containers
+
+To stop running  the containers enter the following command:
+````
+docker-compose down
+````
+
+### Troubleshooting
+
+- Port Conflicts:
+  Ensure ports 5432, 8080, and 5173 are not in use by other processes.
+- Docker Compose Issues:
+  Run docker-compose down and then docker-compose up --build to restart services.
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [x] Dockerize project
+- [x] Add README
+- [ ] Testing
+    - [ ] Set up CI/CD pipeline
+    - [ ] Increase coverage with unit tests
 
 [SpringBoot]: https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white
 [SpringBoot-url]: https://spring.io/projects/spring-boot

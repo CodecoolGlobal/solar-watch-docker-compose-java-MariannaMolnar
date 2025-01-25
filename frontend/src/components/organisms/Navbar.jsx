@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import BiggerOnHover from "../atoms/BiggerOnHover.jsx";
 import { useEffect, useState } from "react";
 import Logo from "../atoms/Logo.jsx"
-import solarLogo from "../../../../../pictures/sun-logo2.png"
+import solarLogo from "../../../../pictures/sun-logo2.png"
 
 function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

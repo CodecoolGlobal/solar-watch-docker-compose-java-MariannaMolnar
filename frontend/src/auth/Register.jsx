@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import Button from "../main/components/atoms/Button.jsx";
-import registerLogo from "../../../../pictures/register3.3.png";
-import Logo from "../main/components/atoms/Logo";
+import Button from "../components/atoms/Button.jsx";
+import registerLogo from "../../../pictures/register3.3.png";
+import Logo from "../components/atoms/Logo.jsx";
 
 function Register() {
     

@@ -1,7 +1,7 @@
-import SolarDataForm from "../main/components/organisms/SolarDataForm";
+import SolarDataForm from "../components/organisms/SolarDataForm.jsx";
 import { useState } from "react";
-import Loading from "../main/components/atoms/Loading";
-import ReportCard from "../main/components/molecules/ReportCard";
+import Loading from "../components/atoms/Loading.jsx";
+import ReportCard from "../components/molecules/ReportCard";
 
 function SolarWatch() {
     const [solarInfo, setSolarInfo] = useState(null);

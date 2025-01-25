@@ -1,10 +1,10 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './features/main/components/organisms/Layout';
-import Login from './features/auth/Login';
-import Register from './features/auth/Register';
-import SolarWatch from './features/solarwatch/SolarWatch';
-import Home from './features/main/components/organisms/Home';
+import Layout from './components/organisms/Layout';
+import Login from './auth/Login';
+import Register from './auth/Register';
+import SolarWatch from './solarwatch/SolarWatch';
+import Home from './components/organisms/Home';
 
 function App() {
 

@@ -86,13 +86,14 @@ Here you find the steps of the installation of our project:
    Once copied, open the `.env` file and update the values to match your credentials and environment settings. For example:
 
     ```plaintext
-    DATABASE_PASSWORD=yourpassword
-    DATABASE_USERNAME=yourusername
+    DATABASE_PASSWORD=your_password
+    DATABASE_USERNAME=your_username
     jwtSecret=======================CodeCool==Solar===========================
     jwtExpirationMs=86400000
+    API_KEY=your_weather_API_key
     ```
 
-   Make sure that the credentials you provide are secure and appropriate for your environment.  
+   Make sure that the credentials you provide are secure and appropriate for your environment and to get your API key from The Cat API - [Get you API key][WeatherAPI-url].  
    The jwtSecret should be at least 64 characters long and cannot use "-" or "_". Alternatively, you can also generate one online: https://jwtsecret.com/generate.
 
 
@@ -174,6 +175,8 @@ docker-compose down
 
 [NGINX]: https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white
 [NGINX-url]: https://nginx.org/
+
+[WeatherAPI-url]: https://openweathermap.org/api/geocoding-api
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/marianna-molnar-21956289

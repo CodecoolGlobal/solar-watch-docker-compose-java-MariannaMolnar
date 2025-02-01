@@ -93,7 +93,7 @@ Here you find the steps of the installation of our project:
     API_KEY=your_weather_API_key
     ```
 
-   Make sure that the credentials you provide are secure and appropriate for your environment and to get your API key from The Cat API - [Get you API key][WeatherAPI-url].  
+   Make sure that the credentials you provide are secure and appropriate for your environment and to get your API key from The Cat API - [Get your API key][WeatherAPI-url].  
    The jwtSecret should be at least 64 characters long and cannot use "-" or "_". Alternatively, you can also generate one online: https://jwtsecret.com/generate.
 
 

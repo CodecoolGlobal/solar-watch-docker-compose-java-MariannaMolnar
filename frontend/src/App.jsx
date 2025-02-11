@@ -1,13 +1,12 @@
-import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './components/organisms/Layout';
-import Login from './auth/Login';
-import Register from './auth/Register';
-import SolarWatch from './solarwatch/SolarWatch';
-import Home from './components/organisms/Home';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/organisms/Layout";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import SolarWatch from "./solarwatch/SolarWatch";
+import Home from "./components/organisms/Home";
 
 function App() {
-
   return (
     <BrowserRouter
       future={{
@@ -16,15 +15,15 @@ function App() {
       }}
     >
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path='/solar-watch' element={< SolarWatch/>} />
+          <Route path="/solar-watch" element={<SolarWatch />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
